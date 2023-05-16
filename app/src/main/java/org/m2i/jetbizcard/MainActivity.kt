@@ -1,6 +1,7 @@
 package org.m2i.jetbizcard
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.BorderStroke
@@ -16,9 +17,11 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CardElevation
+import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -65,26 +68,60 @@ fun CreateBizCard(){
             Column(
                     modifier= Modifier.fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally) {
-                Surface(
-                    modifier = Modifier
-                        .size(150.dp)
-                        .padding(5.dp),
-                    shape = CircleShape,
-                    color = Color.White.copy(alpha = 0.5f),
-                    tonalElevation = 8.dp,
-                    shadowElevation = 4.dp,
-                    border = BorderStroke(0.5.dp, Color.LightGray),
-                ) {
-                    Image(
-                        painter = painterResource(id = R.drawable.profile_png),
-                        contentDescription = "profile image",
-                        modifier = Modifier.size(135.dp),
-                        contentScale = ContentScale.Crop
-                    )
+                CreateImageProfile()
+                Divider()
+                CreateInfo()
+                Button(onClick = {
+                    Log.d("Clicked","Create BizCard")
+                }) {
+                    Text(
+                        text = "Portfolio",
+                        style = MaterialTheme.typography.labelLarge)
                 }
             }
 
         }
+    }
+}
+
+@Composable
+private fun CreateInfo() {
+    Column(modifier = Modifier.padding(5.dp)) {
+        Text(
+            text = "Mr.Chebihi",
+            style = MaterialTheme.typography.headlineMedium,
+            color = MaterialTheme.colorScheme.primary
+        )
+        Text(
+            text = "Android Jetpack developer",
+            modifier = Modifier.padding(3.dp)
+        )
+        Text(
+            text = "f.chebihi@gmail.com",
+            style = MaterialTheme.typography.titleMedium,
+            modifier = Modifier.padding(3.dp)
+        )
+    }
+}
+
+@Composable
+private fun CreateImageProfile() {
+    Surface(
+        modifier = Modifier
+            .size(150.dp)
+            .padding(5.dp),
+        shape = CircleShape,
+        color = Color.White.copy(alpha = 0.5f),
+        tonalElevation = 8.dp,
+        shadowElevation = 4.dp,
+        border = BorderStroke(0.5.dp, Color.LightGray),
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.profile_png),
+            contentDescription = "profile image",
+            modifier = Modifier.size(135.dp),
+            contentScale = ContentScale.Crop
+        )
     }
 }
 
